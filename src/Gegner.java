@@ -56,7 +56,6 @@ public class Gegner {
 	
 	public void checkBulletCollision ( Projektil[] projektile )
 	{
-		System.out.println("checkbo");
 		for( Projektil p : projektile )
 		{
 			if ( p.isAktiv() && p.collideWith(startPos, RADIUS_SQARED) )
