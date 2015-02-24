@@ -3,8 +3,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.*;
-import org.newdawn.slick.geom.*;
 
 public class Waffe {
 

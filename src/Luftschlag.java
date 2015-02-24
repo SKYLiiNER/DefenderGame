@@ -6,7 +6,4 @@ public class Luftschlag {
 			throws SlickException {
 		// TODO Auto-generated constructor stub
 	}
-	private static int magazincapacity = 5;
-	private static float reloadSpeed = 120;
-	private static int ID;
 }

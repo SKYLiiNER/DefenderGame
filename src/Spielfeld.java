@@ -8,13 +8,14 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.*;
 
 public class Spielfeld extends BasicGame {
 
 	Image bg;
 	Spieler sp;
 	Mutterschiff ms;
+	
+	
 	
 	public Spielfeld(String gamename)
 	{
@@ -41,6 +42,7 @@ public class Spielfeld extends BasicGame {
 		g.drawImage(bg, 0, 0);
 		sp.render(gc, g);
 		ms.render(gc, g);
+		
 	}
 
 	@Override

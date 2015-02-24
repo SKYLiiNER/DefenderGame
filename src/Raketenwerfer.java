@@ -6,7 +6,5 @@ public class Raketenwerfer {
 			throws SlickException {
 		// TODO Auto-generated constructor stub
 	}
-	private static int magazinCapacity = 1;
-	private static float reloadSpeed = 5;
-	private static int ID;
+
 }

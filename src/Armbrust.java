@@ -6,7 +6,4 @@ public class Armbrust{
 			throws SlickException {
 		// TODO Auto-generated constructor stub
 	}
-	private static int magazincapacity = 10;
-	private static float reloadSpeed = 5;
-	private static int ID;
 }
