@@ -16,13 +16,13 @@ public class Gegner {
 	private Vector2f realSpeed;
 	private int spawn;
 	
-	private Image enemyImage;
+	//private Image enemyImage;
 	private SpriteSheet enemySheet;
 	private Animation enemyAnimation;
 	
 	private boolean alive = true;
 	
-	protected int RADIUS_SQARED = 3600;
+	protected int RADIUS_SQARED =500;
 	
 	public Gegner (/*int enemyCounter*/) throws SlickException
 	{
@@ -32,7 +32,7 @@ public class Gegner {
 	// super + draw the enemy
 	public void render(GameContainer gc, Graphics g) throws SlickException 
 	{
-		//enemyImage.draw(startPos.getX(), startPos.getY(), 60, 60);
+		//enemyImage.drawCentered(startPos.getX(), startPos.getY());
 		enemyAnimation.draw(startPos.getX(), startPos.getY(), 60, 60);
 	}
 	
@@ -54,8 +54,8 @@ public class Gegner {
 		endPos.sub(startPos).normalise(); 
 		realSpeed = new Vector2f((endPos.getX()-startPos.getX()),0);
 		realSpeed.scale( (t/10000.0f) );
-		//enemyImage = new Image("C:\\Users\\Sebastian\\Documents\\Studium\\DefenderGame\\Dependency\\Zombie-D - Kopie.png");
-		enemySheet = new SpriteSheet("C:\\Users\\Sebastian\\Documents\\Studium\\DefenderGame\\Dependency\\Zombie-D.png",32,32);
+		//enemyImage = new Image("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Zombie-D - Kopie.png");
+		enemySheet = new SpriteSheet("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Zombie-D.png",32,32);
 		enemyAnimation = new Animation(enemySheet, 100);
 		health = 1 + r.nextInt(10);
 	}

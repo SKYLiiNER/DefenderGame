@@ -24,7 +24,7 @@ public class Spielfeld extends BasicGame {
 	
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-        bg = new Image("C:\\Users\\Sebastian\\Documents\\Studium\\DefenderGame\\Dependency\\Images\\background.png");
+        bg = new Image("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Images\\background.png");
 		gc.setMaximumLogicUpdateInterval(60);
 		gc.setTargetFrameRate(60);
 		gc.setAlwaysRender(true);

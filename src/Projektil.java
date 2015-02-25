@@ -10,7 +10,7 @@ public class Projektil{
 	//private int speed1;
 	//private int damage;
 	//private int animationP;
-	private String pBulletImage = "C:\\Users\\Sebastian\\Documents\\Studium\\DefenderGame\\Dependency\\projektilImages\\Single-Bullet-icon.png";
+	private String pBulletImage = "D:\\Downloads\\SE\\DefenderGame\\Dependency\\projektilImages\\Single-Bullet-icon.png";
 	//private Image[] projektilImages = new Image[4];
 	public Image bulletImage;
 	private Input mouseInput;	
@@ -23,13 +23,14 @@ public class Projektil{
 	
 	protected Vector2f pos;
 	protected Vector2f dir;
+	protected Vector2f fixedEnemyPos;
 	protected int lived = 0;
 	
 	protected boolean aktiv = true;
 	
 	protected int MAX_LIFETIME = 10000;
 	protected int DAMAGE = 5;
-	protected int RADIUS_SQARED = 3600;
+	protected int RADIUS_SQARED = 360;
 	
 	
 	public Projektil ( Vector2f pos, Vector2f dir ) throws SlickException
@@ -82,7 +83,7 @@ public class Projektil{
 	{
 		if( aktiv )
 		{
-			bulletImage.draw(pos.getX(), pos.getY());
+			bulletImage.drawCentered(pos.getX(), pos.getY());
 		}
 	}
 	
@@ -99,7 +100,8 @@ public class Projektil{
 	
 	public boolean collideWith ( Vector2f otherPos , int otherRadiusSqared )
 	{
-		int dis = (int) otherPos.copy().sub(pos).lengthSquared();
+		fixedEnemyPos = new Vector2f(otherPos.getX()+30, otherPos.getY()+30);
+		int dis = (int) fixedEnemyPos.copy().sub(pos).lengthSquared();
 		
 		if( dis < ( otherRadiusSqared + RADIUS_SQARED ) )
 		{

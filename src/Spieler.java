@@ -21,7 +21,7 @@ public class Spieler extends Waffe{
 
 	public void init(GameContainer gc) throws SlickException {
 		// TODO Auto-generated method stub
-		playerImage = new Image("C:\\Users\\Sebastian\\Documents\\Studium\\DefenderGame\\Dependency\\imagesPlayer\\ak47;m4_klkein.png");
+		playerImage = new Image("D:\\Downloads\\SE\\DefenderGame\\Dependency\\imagesPlayer\\ak47;m4_klkein.png");
 	}
 
 
