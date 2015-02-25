@@ -10,7 +10,7 @@ public class Projektil{
 	//private int speed1;
 	//private int damage;
 	//private int animationP;
-	private String pBulletImage = "D:\\Downloads\\SE\\DefenderGame\\Dependency\\projektilImages\\Single-Bullet-icon.png";
+	private String pBulletImage = "Dependency\\projektilImages\\Single-Bullet-icon.png";
 	//private Image[] projektilImages = new Image[4];
 	public Image bulletImage;
 	private Input mouseInput;	

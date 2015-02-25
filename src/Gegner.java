@@ -58,7 +58,7 @@ public class Gegner {
 		realSpeed = new Vector2f((endPos.getX()-startPos.getX()),0);
 		realSpeed.scale( (t/10000.0f) );
 		//enemyImage = new Image("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Zombie-D - Kopie.png");
-		enemySheet = new SpriteSheet("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Zombie-D.png",32,32);
+		enemySheet = new SpriteSheet("Dependency\\Zombie-D.png",32,32);
 		enemyAnimation = new Animation(enemySheet, 100);
 		health = 1 + r.nextInt(10);
 	}
