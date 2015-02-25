@@ -24,7 +24,7 @@ public class Gegner {
 	
 	private boolean alive = true;
 	
-	protected int RADIUS_SQARED =500;
+	protected int RADIUS_SQARED = 600;
 	
 	public Gegner (/*int enemyCounter*/) throws SlickException
 	{
