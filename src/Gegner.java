@@ -19,6 +19,8 @@ public class Gegner {
 	//private Image enemyImage;
 	private SpriteSheet enemySheet;
 	private Animation enemyAnimation;
+	private SpriteSheet explosionSheet;
+	private Animation exlposion;
 	
 	private boolean alive = true;
 	
@@ -34,6 +36,7 @@ public class Gegner {
 	{
 		//enemyImage.drawCentered(startPos.getX(), startPos.getY());
 		enemyAnimation.draw(startPos.getX(), startPos.getY(), 60, 60);
+
 	}
 	
 	// super + fire bullets with the given fire rate
@@ -60,7 +63,7 @@ public class Gegner {
 		health = 1 + r.nextInt(10);
 	}
 	
-	public void checkBulletCollision ( Projektil[] projektile )
+	public void checkBulletCollision ( Projektil[] projektile ) throws SlickException 
 	{
 		for( Projektil p : projektile )
 		{

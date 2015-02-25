@@ -11,6 +11,7 @@ public class Mutterschiff {
 	protected int lives = 0;
 	protected int DELAY = 500;
 	private int delta;
+	private int spawnrate = 1000;
 	private LinkedList<Gegner> enemys;
 	
 	private int score = 0;
@@ -76,18 +77,19 @@ public class Mutterschiff {
 			e.checkBulletCollision(projektile);
 
 		}
-		if(delta > 1000)
+		
+		if(delta > spawnrate)
 			{
 				Gegner e = new Gegner();
 				e.init(t);
 				enemys.add( e );
 				delta = 0;
+				if (spawnrate > 500)
+				spawnrate = spawnrate - 10;;
 			}
 		//muss noch überarbeitet werden
 		
-			time += t;
-	
-		
+			time += t;		
 	}
 	
 	

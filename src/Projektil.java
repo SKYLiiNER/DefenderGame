@@ -70,7 +70,7 @@ public class Projektil{
 		if( aktiv )
 		{
 			Vector2f realSpeed = dir.copy();
-			realSpeed.scale( (t/1000.0f) );
+			realSpeed.scale( (t/500.0f) );
 			pos.add( realSpeed );
 			
 			lived += t;
