@@ -2,100 +2,106 @@ import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Vector2f;
 
 public class Mutterschiff {
-	protected int lives = 0;
-	protected int DELAY = 500;
-	private int delta;
-	private int spawnrate = 1000;
-	private LinkedList<Gegner> enemys;
-	
-	private int score = 0;
-	private float multi = 1.0f;
-	private long time = 0;
-	private int multiCounter = 0;
-	// we need to know where the player is  
-	
-	public Mutterschiff ()
-	{
-		this.init();
-	}
-	
-	// super + draw the enemy
-	public void render(GameContainer gc, Graphics g) throws SlickException 
-	{
-		for(Gegner enemy : enemys)
-		{
+    protected int lives = 0;
+    protected int DELAY = 500;
+    private int delta;
+    private int spawnrate = 2000;
+    public LinkedList<Gegner> enemys;
 
-			System.out.println("render");
-			enemy.render(gc, g);
+    private int score = 0;
+    private int framecount = 0;
+    private float multi = 1.0f;
+    private long time = 0;
+    private int multiCounter = 0;
+
+    private boolean enemyHit = false;
+    private Vector2f hitPos;
+    private SpriteSheet explosionSheet;
+    private Animation explosion;
+
+    // we need to know where the player is
+
+    public Mutterschiff() throws SlickException {
+	this.init();
+    }
+
+    // super + draw the enemy
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+	for (Gegner enemy : enemys) {
+	    enemy.render(gc, g);
+	}
+
+	NumberFormat nf = NumberFormat.getInstance();
+	nf.setMinimumFractionDigits(2);
+	nf.setMaximumFractionDigits(2);
+
+	if (enemyHit) {
+	    explosion.draw(hitPos.getX(), hitPos.getY(), 100, 100);
+	    framecount++;
+	    if (framecount == 40) {
+		enemyHit = false;
+		framecount = 0;
+	    }
+	}
+
+	g.setColor(Color.white);
+	g.drawString("Score : " + score, 10, 5);
+	g.drawString("Gegner HP: " + Math.round(multi * 10), 650, 5);
+	g.drawString("Time : " + nf.format((double) time / 1000), 1080, 5);
+    }
+
+    // super + fire bullets with the given fire rate
+    // + mouve towards the player
+    public void update(GameContainer gc, int t, Projektil[] projektile)
+	    throws SlickException {
+	delta += t;
+	Iterator<Gegner> i = enemys.iterator();
+	while (i.hasNext()) {
+	    Gegner e = i.next();
+	    e.update(gc, t);
+	    if (!e.isAlive()) {
+		score += 10 * multi;
+		hitPos = e.startPos;
+		enemyHit = true;
+		explosion.restart();
+		i.remove();
+		multiCounter++;
+		if (multiCounter == 2) {
+		    multi += (float) 10 / 100;
+		    multiCounter = 0;
 		}
+	    }
+	    e.checkBulletCollision(projektile);
 
-		NumberFormat nf = NumberFormat.getInstance();
-		nf.setMinimumFractionDigits(2);
-		nf.setMaximumFractionDigits(2);
-		
-		
-		g.setColor(Color.white);
-		g.drawString("Score : " + score , 10, 5 );
-		g.drawString("Multiplicator : " + nf.format(multi) , 600, 5 );
-		g.drawString("Time : " + nf.format( (double)time/1000 ), 1080, 5 );
 	}
-	
-	// super + fire bullets with the given fire rate
-	// + mouve towards the player
-	public void update(GameContainer gc, int t, Projektil[] projektile) throws SlickException 
-	{
-		delta += t;		
-		Iterator<Gegner> i = enemys.iterator();
-		while( i.hasNext() )
-		{
-			System.out.println("gegner updaten");
-			Gegner e = i.next();
-			e.update(gc, t);
-			// remove enemys that are dead or at the  player position
-			// the player position is necessary because the enemys continue spawning even if the player is dead 
-			// -> there would be unlimited without
-			if( !e.isAlive() )
-			{
-				System.out.println("gegner löschen");
-				score += 10 * multi;
-				i.remove();
-				multiCounter++;
-				if(multiCounter == 10)
-				{
-					multi += (float)multiCounter/100;
-					multiCounter = 0;
-				}
-			}
-			//p.checkBulletCollision(e.getBullets());
-			System.out.println(projektile);
-			e.checkBulletCollision(projektile);
 
-		}
-		
-		if(delta > spawnrate)
-			{
-				Gegner e = new Gegner();
-				e.init(t);
-				enemys.add( e );
-				delta = 0;
-				if (spawnrate > 500)
-				spawnrate = spawnrate - 10;;
-			}
-		//muss noch überarbeitet werden
-		
-			time += t;		
+	if (delta > spawnrate) {
+	    Gegner e = new Gegner();
+	    e.init(multi);
+	    enemys.add(e);
+	    delta = 0;
+	    if (spawnrate > 500)
+		spawnrate = spawnrate - 10;
+	    ;
 	}
-	
-	
-	// init with some random values
-	public void init()
-	{
-		enemys = new LinkedList<Gegner>();
-	}
+	// muss noch überarbeitet werden
+
+	time += t;
+    }
+
+    // init with some random values
+    public void init() throws SlickException {
+	enemys = new LinkedList<Gegner>();
+	explosionSheet = new SpriteSheet("Dependency\\Images\\explode.png",23, 23);
+	explosion = new Animation(explosionSheet, 100);
+    }
 }
