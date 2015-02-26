@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Vector2f;
 
 public class Mutterschiff {
@@ -27,6 +29,7 @@ public class Mutterschiff {
     private Vector2f hitPos;
     private SpriteSheet explosionSheet;
     private Animation explosion;
+    private TrueTypeFont ufont;
 
     // we need to know where the player is
 
@@ -54,6 +57,7 @@ public class Mutterschiff {
 	}
 
 	g.setColor(Color.white);
+	g.setFont(ufont);
 	g.drawString("Score : " + score, 10, 5);
 	g.drawString("Gegner HP: " + Math.round(multi * 10), 650, 5);
 	g.drawString("Time : " + nf.format((double) time / 1000), 1080, 5);
@@ -103,5 +107,7 @@ public class Mutterschiff {
 	enemys = new LinkedList<Gegner>();
 	explosionSheet = new SpriteSheet("Dependency\\Images\\explode.png",23, 23);
 	explosion = new Animation(explosionSheet, 100);
+	Font font = new Font("Arial", Font.BOLD, 20);
+	ufont = new TrueTypeFont(font, false);
     }
 }
