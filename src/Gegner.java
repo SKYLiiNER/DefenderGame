@@ -10,8 +10,9 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Gegner {
 
-	private int health;
-	private Vector2f startPos; 
+	private float health;
+	private int speed = 15;
+	public Vector2f startPos; 
 	private Vector2f endPos;
 	private Vector2f realSpeed;
 	private int spawn;
@@ -19,8 +20,8 @@ public class Gegner {
 	//private Image enemyImage;
 	private SpriteSheet enemySheet;
 	private Animation enemyAnimation;
-	private SpriteSheet explosionSheet;
-	private Animation exlposion;
+	
+
 	
 	private boolean alive = true;
 	
@@ -36,6 +37,9 @@ public class Gegner {
 	{
 		//enemyImage.drawCentered(startPos.getX(), startPos.getY());
 		enemyAnimation.draw(startPos.getX(), startPos.getY(), 60, 60);
+//	    	Image image = enemyAnimation.getCurrentFrame();
+//	    	image.setRotation(90);
+//	    	image.draw(startPos.getX(), startPos.getY(), 60, 60);
 
 	}
 	
@@ -48,7 +52,7 @@ public class Gegner {
 	}
 	
 	// init with some random values
-	public void init(int t) throws SlickException 
+	public void init(float multiplikator) throws SlickException 
 	{
 		Random r = new Random();
 		spawn = r.nextInt(700);
@@ -56,11 +60,12 @@ public class Gegner {
 		endPos = new Vector2f(210, spawn);
 		endPos.sub(startPos).normalise(); 
 		realSpeed = new Vector2f((endPos.getX()-startPos.getX()),0);
-		realSpeed.scale( (t/10000.0f) );
+		realSpeed.scale( (speed/10000.0f) );
 		//enemyImage = new Image("D:\\Downloads\\SE\\DefenderGame\\Dependency\\Zombie-D - Kopie.png");
 		enemySheet = new SpriteSheet("Dependency\\Zombie-D.png",32,32);
 		enemyAnimation = new Animation(enemySheet, 100);
-		health = 1 + r.nextInt(10);
+		
+		health = 10 * multiplikator;
 	}
 	
 	public void checkBulletCollision ( Projektil[] projektile ) throws SlickException 
