@@ -65,7 +65,7 @@ public class Gegner {
 		enemySheet = new SpriteSheet("Dependency\\Zombie-D.png",32,32);
 		enemyAnimation = new Animation(enemySheet, 100);
 		
-		health = 10 * multiplikator;
+		health = 10;
 	}
 	
 	public void checkBulletCollision ( Projektil[] projektile ) throws SlickException 

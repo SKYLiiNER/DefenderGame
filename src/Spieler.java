@@ -17,6 +17,8 @@ public class Spieler extends Waffe{
 	private SpriteSheet spielerSheet;
 	private Animation spieler;
 	
+	private Sound sound;
+	
 	public Spieler( Vector2f pos) throws SlickException {
 		super(pos,100);
 		init();
@@ -26,6 +28,7 @@ public class Spieler extends Waffe{
 		// TODO Auto-generated method stub
 	    spielerSheet = new SpriteSheet("Dependency\\Images\\spieler.png", 25, 32);
 	    spieler = new Animation(spielerSheet, 300);
+	    sound = new Sound("Dependency\\shot.wav");
 	}
 
 
@@ -38,16 +41,11 @@ public class Spieler extends Waffe{
 
 	public void update(GameContainer gc, int t) throws SlickException {
 		this.mouseInput = gc.getInput();
-//		mouseX = mouseInput.getMouseX();
-//		mouseY = mouseInput.getMouseY();
-//		xDistance = mouseX - position_X;
-//		yDistance = mouseY - position_Y;
-//		float angleToTurn = (float)Math.toDegrees(Math.atan2(yDistance , xDistance));
-//		spieler.setRotation( angleToTurn);
 		super.update(gc, t);
 		if(delta >DELAY && gc.getInput().isMousePressed(Input.MOUSE_LEFT_BUTTON) && (gc.getInput().getMouseX() >200))
 		{
 			fireBullet(gc, new Vector2f(gc.getInput().getMouseX(),gc.getInput().getMouseY()), new Projektil());
+			sound.play();
 		}
 	}
 }

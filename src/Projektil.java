@@ -29,7 +29,7 @@ public class Projektil{
 	protected boolean aktiv = true;
 	
 	protected int MAX_LIFETIME = 10000;
-	protected int DAMAGE = 5;
+	protected int DAMAGE = 10;
 	protected int RADIUS_SQARED = 360;
 	
 	

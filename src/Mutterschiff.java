@@ -16,10 +16,10 @@ public class Mutterschiff {
     protected int lives = 0;
     protected int DELAY = 500;
     private int delta;
-    private int spawnrate = 2000;
+    private int spawnrate = 1000;
     public LinkedList<Gegner> enemys;
 
-    private int score = 0;
+    protected int score = 0;
     private int framecount = 0;
     private float multi = 1.0f;
     private long time = 0;
@@ -59,7 +59,7 @@ public class Mutterschiff {
 	g.setColor(Color.white);
 	g.setFont(ufont);
 	g.drawString("Score : " + score, 10, 5);
-	g.drawString("Gegner HP: " + Math.round(multi * 10), 650, 5);
+	g.drawString("Multiplikator : " + nf.format(multi) , 650, 5 );
 	g.drawString("Time : " + nf.format((double) time / 1000), 1080, 5);
     }
 
@@ -93,8 +93,9 @@ public class Mutterschiff {
 	    e.init(multi);
 	    enemys.add(e);
 	    delta = 0;
+	    System.out.println(spawnrate);
 	    if (spawnrate > 500)
-		spawnrate = spawnrate - 10;
+		spawnrate = spawnrate - 5;
 	    ;
 	}
 	// muss noch überarbeitet werden

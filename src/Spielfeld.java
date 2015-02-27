@@ -9,7 +9,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -22,7 +24,10 @@ public class Spielfeld extends BasicGame {
     boolean GameState;
     int countdown = 10000;
     Color rot = new Color(255, 0, 0);
+    Color weiss = new Color(255,255,255);
 
+    private Music music;
+    
     public Spielfeld(String gamename) {
 	super(gamename);
     }
@@ -42,7 +47,9 @@ public class Spielfeld extends BasicGame {
 	sp = new Spieler(new Vector2f(124, 422));
 	sp.init(gc);
 	ms = new Mutterschiff();
-
+	music = new Music("Dependency\\bgmusic.wav");
+	music.setVolume(2.5f);
+	music.loop();
     }
 
     @Override
@@ -63,6 +70,9 @@ public class Spielfeld extends BasicGame {
 	    g.drawImage(gameover, 0, 0);
 	    g.setColor(rot);
 	    g.drawString("GAME OVER! ", 570, 390);
+	    g.setColor(weiss);
+	    g.drawString("Higscore: "+ ms.score, 560, 420);
+	    music.stop();
 	}
 
     }
