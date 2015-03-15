@@ -7,11 +7,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Projektil{
 
-	//private int speed1;
-	//private int damage;
-	//private int animationP;
 	private String pBulletImage = "Dependency\\Images\\fireball.png";
-	//private Image[] projektilImages = new Image[4];
 	public Image bulletImage;
 	private Input mouseInput;	
 	private float mouseX;

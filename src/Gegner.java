@@ -3,7 +3,6 @@ import java.util.Random;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
@@ -16,6 +15,7 @@ public class Gegner {
 	private Vector2f endPos;
 	private Vector2f realSpeed;
 	private int spawn;
+	private int healthMulti;
 	
 	//private Image enemyImage;
 	private SpriteSheet enemySheet;
@@ -27,9 +27,9 @@ public class Gegner {
 	
 	protected int RADIUS_SQARED = 600;
 	
-	public Gegner (/*int enemyCounter*/) throws SlickException
+	public Gegner (int healthMulti) throws SlickException
 	{
-		//this.enemyCounter = enemyCounter;
+		this.healthMulti = healthMulti;
 	}
 	
 	// super + draw the enemy
@@ -65,7 +65,7 @@ public class Gegner {
 		enemySheet = new SpriteSheet("Dependency\\Zombie-D.png",32,32);
 		enemyAnimation = new Animation(enemySheet, 100);
 		
-		health = 10;
+		health = 10*healthMulti;
 	}
 	
 	public void checkBulletCollision ( Projektil[] projektile ) throws SlickException 

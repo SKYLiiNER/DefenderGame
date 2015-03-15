@@ -3,16 +3,8 @@ import org.newdawn.slick.geom.Vector2f;
 
 public class Spieler extends Waffe{
 
-	//private int score;
-	//private int animation;
-	private Image playerImage;
+	@SuppressWarnings("unused")
 	private Input mouseInput;
-	private float mouseX;
-	private float mouseY;
-	private float xDistance;
-	private float yDistance;
-	private static float position_X = 100;
-	private static float position_Y = 400;
 	private int DELAY = 100;
 	private SpriteSheet spielerSheet;
 	private Animation spieler;

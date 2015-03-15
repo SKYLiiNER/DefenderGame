@@ -30,6 +30,8 @@ public class Mutterschiff {
     private SpriteSheet explosionSheet;
     private Animation explosion;
     private TrueTypeFont ufont;
+    
+    private int dif = 1;
 
     // we need to know where the player is
 
@@ -89,13 +91,14 @@ public class Mutterschiff {
 	}
 
 	if (delta > spawnrate) {
-	    Gegner e = new Gegner();
+	    Gegner e = new Gegner(dif);
 	    e.init(multi);
 	    enemys.add(e);
 	    delta = 0;
-	    System.out.println(spawnrate);
-	    if (spawnrate > 500)
+	    if (spawnrate > 250)
 		spawnrate = spawnrate - 5;
+	    if(spawnrate < 500)
+	    	dif = 2;
 	    ;
 	}
 	// muss noch überarbeitet werden
